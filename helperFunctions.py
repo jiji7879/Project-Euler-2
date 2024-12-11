@@ -215,3 +215,20 @@ def find_nth_lexicographic_permutation(sorted_list: list, n: int) -> list:
     multiple = sorted_list.pop(n // key_number)
     remainder = n - ((n // key_number) * key_number)
     return [multiple] + find_nth_lexicographic_permutation(sorted_list, remainder)
+
+# totient(m) * totient(n) = totient(m * n) if m and n are relatively prime
+# Chinese Remainder Theorem
+# Each prime power is relatively prime to each other so long as the primes are distinct
+#
+# On the totient of a prime power:
+# Note that exactly p^k/p = p^(k-1) numbers will divide p
+# So totient(p^k) = p^k - p^k/p = (p-1)/p p^k = (p-1) p^(k-1) = (1-1/p) p^k
+# Multiplying all the primes will give totient(n) = n * (1-1/p_1) * (1-1/p_2)...
+def totient(n: int, list_of_potential_primes: list = None) -> int:
+    if n == 1:
+        return 1
+    totient = n
+    prime_dicts = prime_factors(n, list_of_potential_primes)
+    for prime in prime_dicts.keys():
+        totient = (prime - 1) * totient // prime
+    return totient
