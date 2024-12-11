@@ -1,12 +1,10 @@
-import helperFunctions
-from helperFunctions import primes_until_n
-
+import primeHelperFunctions
 
 def list_of_abundant_numbers(max_num: int) -> list:
     abundant_numbers = []
-    primes = primes_until_n(max_num)
+    primes = primeHelperFunctions.primes_until_n(max_num)
     for i in range(1, max_num+1):
-        if sum(helperFunctions.divisor_list(i, primes)) > 2 * i:
+        if sum(primeHelperFunctions.divisor_list(i, primes)) > 2 * i:
             abundant_numbers.append(i)
     return abundant_numbers
 

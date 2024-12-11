@@ -1,4 +1,4 @@
-import helperFunctions
+import primeHelperFunctions
 
 def p69solution1(max_int: int) -> int:
     primes = helperFunctions.primes_until_n(max_int)

@@ -1,10 +1,10 @@
-import helperFunctions
+import bigNumberHelperFunctions
 
 def big_factorial(num: int) -> list:
     factorial_list = [1]
     for i in range(2, num+1):
         num_list = [int(j) for j in str(i)]
-        factorial_list = helperFunctions.big_number_multiplication(factorial_list, num_list)
+        factorial_list = bigNumberHelperFunctions.big_number_multiplication(factorial_list, num_list)
     return factorial_list
 
 def p20solution1(num: int) -> int:

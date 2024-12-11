@@ -1,4 +1,4 @@
-import helperFunctions
+import bigNumberHelperFunctions
 
 def p15solution1(grid_size: int) -> int:
     # The number of steps to get to the bottom-right corner of an n x n grid is 2n steps
@@ -8,7 +8,7 @@ def p15solution1(grid_size: int) -> int:
     # Amazingly, the (n, n) value turns out to be the maximum of that 2n step restriction.
     polynomial_power = [1,1]
     for _ in range(2*grid_size-1):
-        polynomial_power = helperFunctions.polynomial_multiplication(polynomial_power, [1,1])
+        polynomial_power = bigNumberHelperFunctions.polynomial_multiplication(polynomial_power, [1,1])
     return max(polynomial_power)
 
 if __name__ == "__main__":

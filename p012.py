@@ -1,4 +1,4 @@
-import helperFunctions
+import primeHelperFunctions
 
 
 def triangle_number(n: int) -> int:
@@ -9,25 +9,25 @@ def triangle_number(n: int) -> int:
 
 
 def p12solution1() -> int:
-    listOfPotentialPrimes = helperFunctions.primes_until_n(1000000)
+    listOfPotentialPrimes = primeHelperFunctions.primes_until_n(1000000)
     divisors = 1
     i = 2
     while divisors < 500:
-        divisors = helperFunctions.number_of_divisors(triangle_number(i), listOfPotentialPrimes)
+        divisors = primeHelperFunctions.number_of_divisors(triangle_number(i), listOfPotentialPrimes)
         i += 1
     return divisors
 
 
 def p12solution2() -> int:
-    listOfPotentialPrimes = helperFunctions.primes_until_n(1000000)
+    listOfPotentialPrimes = primeHelperFunctions.primes_until_n(1000000)
     divisors = 1
     i = 2
     while divisors < 500:
-        divisorsList1 = helperFunctions.prime_factors(i + 1, listOfPotentialPrimes)
-        divisorsList2 = helperFunctions.prime_factors(i, listOfPotentialPrimes)
-        mult = helperFunctions.multiply_prime_factors(divisorsList1, divisorsList2)
+        divisorsList1 = primeHelperFunctions.prime_factors(i + 1, listOfPotentialPrimes)
+        divisorsList2 = primeHelperFunctions.prime_factors(i, listOfPotentialPrimes)
+        mult = primeHelperFunctions.multiply_prime_factors(divisorsList1, divisorsList2)
         mult[2] = mult[2] - 1
-        divisors = helperFunctions.number_of_divisors_from_dict(mult)
+        divisors = primeHelperFunctions.number_of_divisors_from_dict(mult)
         i += 1
     return divisors
 

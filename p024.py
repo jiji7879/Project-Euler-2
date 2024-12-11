@@ -1,10 +1,10 @@
-import helperFunctions
+import miscHelperFunctions
 
 def p24solution1():
-    permutation = helperFunctions.find_nth_lexicographic_permutation(list(range(10)), 1000000-1)
+    permutation = miscHelperFunctions.find_nth_lexicographic_permutation(list(range(10)), 1000000-1)
     string = ""
-    for int in permutation:
-        string += str(int)
+    for char in permutation:
+        string += str(char)
     return string
 
 if __name__ == "__main__":

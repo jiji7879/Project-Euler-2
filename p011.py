@@ -1,8 +1,8 @@
-import helperFunctions
+import miscHelperFunctions
 
 
 def p11solution1() -> int:
-    array = helperFunctions.read_file_as_array_of_numbers("p011.txt")
+    array = miscHelperFunctions.read_file_as_array_of_numbers("p011.txt")
     maxProduct = 0
 
     numRows = len(array)
