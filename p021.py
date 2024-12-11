@@ -10,7 +10,6 @@ def p21solution(max_num: int) -> int:
         divisor_sum = sum(helperFunctions.divisor_list(i, primes)) - i
         divisorSums[i] = divisor_sum
         if i != divisor_sum and divisor_sum in divisorSums and divisorSums[divisor_sum] == i:
-            print(divisor_sum, i)
             if divisor_sum < 10000:
                 sum1 += divisor_sum
             sum1 += i
