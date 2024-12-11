@@ -108,10 +108,41 @@ def number_of_divisors_from_dict(dict_of_prime_factors: dict) -> int:
 
 #done in p12
 # By Fundamental Theorem of Arithmetic, these will multiply to unique integers
-def multiply_prime_factors(dict_of_prime_factors1: dict, dict_of_prime_factors2: dict):
+def multiply_prime_factors(dict_of_prime_factors1: dict, dict_of_prime_factors2: dict) -> dict:
     for prime in dict_of_prime_factors1:
         if prime in dict_of_prime_factors2:
             dict_of_prime_factors2[prime]= dict_of_prime_factors2[prime] + dict_of_prime_factors1[prime]
         else:
             dict_of_prime_factors2[prime]=dict_of_prime_factors1[prime]
     return dict_of_prime_factors2
+
+#done in p15
+# the polynomial list is structured from highest order to least
+# for example, multiplying (x^2+1)(x^3-2x^2+x-1) correlates to [1,0,1] and [1,-2,1,-1]
+def polynomial_multiplication(polynomial1: list, polynomial2: list) -> list:
+    multiplication_result = [0 for _ in range(len(polynomial1)+len(polynomial2)-1)]
+    for polynomial_2_term_index in range(len(polynomial2)):
+        for polynomial_1_term_index in range(len(polynomial1)):
+            multiplication_result[polynomial_1_term_index+polynomial_2_term_index] += (
+                    polynomial1[polynomial_1_term_index] * polynomial2[polynomial_2_term_index])
+    return multiplication_result
+
+def big_number_multiplication(big_num1: list, big_num2: list, base: int = 10) -> list:
+    multiplication_result = polynomial_multiplication(big_num1, big_num2)
+    for negative_index in range(1, len(multiplication_result)):
+        if multiplication_result[-negative_index] >= base:
+            multiplication_result[-negative_index - 1] += multiplication_result[-negative_index] // base
+            multiplication_result[-negative_index] = multiplication_result[-negative_index] % base
+    while multiplication_result[0] >= base:
+        multiplication_result.insert(0, multiplication_result[0] // base)
+        # the whole result should be pushed to the right by 1
+        multiplication_result[1] = multiplication_result[1] % base
+    return multiplication_result
+
+
+def digit_sum(num: int) -> int:
+    num_string = str(num)
+    digit_sum1 = 0
+    for char in num_string:
+        digit_sum1 += int(char)
+    return digit_sum1
