@@ -1,3 +1,5 @@
+import math
+
 #done in p7
 #uses sieve of eratosthenes
 def first_n_primes(number_of_prime_targets: int) -> list:
@@ -134,15 +136,29 @@ def polynomial_multiplication(polynomial1: list, polynomial2: list) -> list:
 # done in p16
 def big_number_multiplication(big_num1: list, big_num2: list, base: int = 10) -> list:
     multiplication_result = polynomial_multiplication(big_num1, big_num2)
-    for negative_index in range(1, len(multiplication_result)):
-        if multiplication_result[-negative_index] >= base:
-            multiplication_result[-negative_index - 1] += multiplication_result[-negative_index] // base
-            multiplication_result[-negative_index] = multiplication_result[-negative_index] % base
-    while multiplication_result[0] >= base:
-        multiplication_result.insert(0, multiplication_result[0] // base)
-        # the whole result should be pushed to the right by 1
-        multiplication_result[1] = multiplication_result[1] % base
-    return multiplication_result
+    return big_number_carrying(multiplication_result, base)
+
+# done in p25
+def big_number_addition(big_num1: list, big_num2: list, base: int = 10) -> list:
+    if len(big_num1) > len(big_num2):
+        big_num2 = [0 for _ in range(len(big_num1)-len(big_num2))] + big_num2
+    else:
+        big_num1 = [0 for _ in range(len(big_num2) - len(big_num1))] + big_num1
+    addition_result = [0 for _ in range(len(big_num1))]
+    for i in range(len(big_num1)):
+        addition_result[i] = big_num1[i] + big_num2[i]
+    return big_number_carrying(addition_result, base)
+
+def big_number_carrying(big_num_list: list, base: int) -> list:
+    for negative_index in range(1, len(big_num_list)):
+        if big_num_list[-negative_index] >= base:
+            big_num_list[-negative_index - 1] += big_num_list[-negative_index] // base
+            big_num_list[-negative_index] = big_num_list[-negative_index] % base
+    while big_num_list[0] >= base:
+        big_num_list.insert(0, big_num_list[0] // base)
+        # the rest of the result should be pushed to the right by 1
+        big_num_list[1] = big_num_list[1] % base
+    return big_num_list
 
 # done in p16
 def digit_sum(num: int) -> int:
@@ -178,3 +194,24 @@ def divisors_from_dict(dict_of_prime_factors: dict) -> list:
         divisors = divisors + new_divisors
     divisors.sort()
     return divisors
+
+#done in p24
+# def factorial(num: int) -> int:
+#     fast_factorial = [1, 1, 2, 6, 24, 120]
+#     if num <= 5:
+#         return fast_factorial[num]
+#     return num * factorial(num - 1)
+
+#done in p24
+#n starts at index 0
+def find_nth_lexicographic_permutation(sorted_list: list, n: int) -> list:
+    if len(sorted_list) == 1:
+        return [sorted_list[0]]
+    #big_factorial = factorial(len(sorted_list))
+    big_factorial = math.factorial(len(sorted_list))
+    if n >= big_factorial:
+        return ["Error"]
+    key_number = big_factorial // len(sorted_list)
+    multiple = sorted_list.pop(n // key_number)
+    remainder = n - ((n // key_number) * key_number)
+    return [multiple] + find_nth_lexicographic_permutation(sorted_list, remainder)

@@ -1,10 +1,13 @@
 import helperFunctions
+from helperFunctions import primes_until_n
+
 
 def p21solution(max_num: int) -> int:
     divisorSums = {}
     sum1 = 0
+    primes = primes_until_n(max_num+1)
     for i in range(1, max_num+1):
-        divisor_sum = sum(helperFunctions.divisor_list(i)) - i
+        divisor_sum = sum(helperFunctions.divisor_list(i, primes)) - i
         divisorSums[i] = divisor_sum
         if i != divisor_sum and divisor_sum in divisorSums and divisorSums[divisor_sum] == i:
             print(divisor_sum, i)
