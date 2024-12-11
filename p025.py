@@ -1,7 +1,6 @@
 import helperFunctions
-import copy
 
-def p025solution() -> list:
+def p25solution() -> list:
     x1 = [1]
     x2 = [1]
     count = 2
@@ -13,4 +12,4 @@ def p025solution() -> list:
     return count
 
 if __name__ == "__main__":
-    print(p025solution())
+    print(p25solution())
