@@ -27,6 +27,10 @@ def first_n_primes(number_of_prime_targets: int) -> list:
 #done in p10
 #uses sieve of eratosthenes
 def primes_until_n(limit: int) -> list:
+    if limit == 2:
+        return [2]
+    elif limit == 3:
+        return [2, 3]
     primeList = []
     listOfNumbers = [False] * (limit + 1)
     for i in range(2, int((limit + 1) ** 0.5)):
@@ -156,3 +160,21 @@ def path_sum(triangle_list: list) -> int:
         for j in range(len(triangle_list[-i])):
             triangle_list[-i][j] += max(triangle_list[-i+1][j], triangle_list[-i+1][j+1])
     return triangle_list[0][0]
+
+#done in p21
+def divisor_list(n: int, list_of_potential_primes: list = None) -> list:
+    if n == 1:
+        return [1]
+    primeFactorList = prime_factors(n, list_of_potential_primes)
+    return divisors_from_dict(primeFactorList)
+
+def divisors_from_dict(dict_of_prime_factors: dict) -> list:
+    divisors: list = [1]
+    for prime in dict_of_prime_factors:
+        new_divisors = []
+        for divisor in divisors:
+            for power in range(1, dict_of_prime_factors[prime] + 1):
+                new_divisors.append(divisor * (prime ** power))
+        divisors = divisors + new_divisors
+    divisors.sort()
+    return divisors
