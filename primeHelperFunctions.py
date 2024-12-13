@@ -31,6 +31,10 @@ def primes_until_n(limit: int) -> list:
         return [2]
     elif limit == 3:
         return [2, 3]
+    elif limit <= 6:
+        return [2, 3, 5]
+    elif limit <= 10:
+        return [2, 3, 5, 7]
     primeList = []
     listOfNumbers = [False] * (limit + 1)
     for i in range(2, int((limit + 1) ** 0.5)):

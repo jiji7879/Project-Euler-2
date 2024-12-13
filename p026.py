@@ -1,6 +1,3 @@
-from numpy.f2py.auxfuncs import throw_error
-
-
 def find_reciprocal_cycle_length(n: int) -> int:
     if n <= 0:
         return -1
