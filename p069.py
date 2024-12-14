@@ -1,5 +1,6 @@
 import primeHelperFunctions
 
+
 def p69solution1(max_int: int) -> int:
     primes = primeHelperFunctions.primes_until_n(max_int)
     max_quotient = 0
@@ -7,7 +8,7 @@ def p69solution1(max_int: int) -> int:
     for i in range(2, max_int, 2):
         if i % 10000 == 0:
             print(i)
-        quotient = i/primeHelperFunctions.totient(i, primes)
+        quotient = i / primeHelperFunctions.totient(i, primes)
         if quotient > max_quotient:
             max_quotient = quotient
             max_number = i

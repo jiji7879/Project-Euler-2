@@ -1,13 +1,16 @@
 def triangle_number(n: int) -> int:
     return n * (n + 1) // 2
 
+
 def pentagonal_number(n: int) -> int:
     return n * (3 * n - 1) // 2
+
 
 def hexagonal_number(n: int) -> int:
     return n * (2 * n - 1)
 
-def p45solution1():
+
+def p45solution1() -> int:
     i = 286
     j = 1
     k = 1
@@ -31,6 +34,7 @@ def p45solution1():
                 k += 1
                 hexagon = hexagonal_number(k)
     return triangle
+
 
 if __name__ == "__main__":
     print(p45solution1())
