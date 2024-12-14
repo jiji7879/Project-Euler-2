@@ -54,3 +54,16 @@ def find_nth_lexicographic_permutation(sorted_list: list, n: int) -> list:
     multiple = sorted_list.pop(n // key_number)
     remainder = n - ((n // key_number) * key_number)
     return [multiple] + find_nth_lexicographic_permutation(sorted_list, remainder)
+
+def is_pandigital(list_to_check: list, partial: bool) -> bool:
+    pandigital_digit_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    list_digit_set = set()
+    for item in list_to_check:
+        for char in str(item):
+            if int(char) in list_digit_set:
+                return False
+            list_digit_set.add(int(char))
+    if partial:
+        return True if list_digit_set.issubset(pandigital_digit_set) else False
+    else:
+        return True if list_digit_set == pandigital_digit_set else False

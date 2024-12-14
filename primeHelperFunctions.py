@@ -88,8 +88,8 @@ def prime_factors(n: int, list_of_potential_primes: list = None) -> dict:
 
 #done in p12
 def number_of_divisors(n: int, list_of_potential_primes: list = None) -> int:
-    primeFactorList = prime_factors(n, list_of_potential_primes)
-    return number_of_divisors_from_dict(primeFactorList)
+    prime_factor_list = prime_factors(n, list_of_potential_primes)
+    return number_of_divisors_from_dict(prime_factor_list)
 
 def number_of_divisors_from_dict(dict_of_prime_factors: dict) -> int:
     divisors = 1
@@ -111,8 +111,8 @@ def multiply_prime_factors(dict_of_prime_factors1: dict, dict_of_prime_factors2:
 def divisor_list(n: int, list_of_potential_primes: list = None) -> list:
     if n == 1:
         return [1]
-    primeFactorList = prime_factors(n, list_of_potential_primes)
-    return divisors_from_dict(primeFactorList)
+    prime_factor_dict = prime_factors(n, list_of_potential_primes)
+    return divisors_from_dict(prime_factor_dict)
 
 def divisors_from_dict(dict_of_prime_factors: dict) -> list:
     divisors: list = [1]
@@ -141,3 +141,12 @@ def totient(n: int, list_of_potential_primes: list = None) -> int:
     for prime in prime_dicts.keys():
         totient_num = (prime - 1) * totient_num // prime
     return totient_num
+
+def gcd(num1: int, num2: int, list_of_potential_primes: list = None) -> int:
+    num1_prime_factor_dict = prime_factors(num1, list_of_potential_primes)
+    num2_prime_factor_dict = prime_factors(num2, list_of_potential_primes)
+    gcd_num = 1
+    for power in num1_prime_factor_dict:
+        if power in num2_prime_factor_dict:
+            gcd_num *= power ** min(num1_prime_factor_dict[power], num2_prime_factor_dict[power])
+    return gcd_num
