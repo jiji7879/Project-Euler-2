@@ -13,5 +13,6 @@ def find_sum_of_diagonals(size: int) -> int:
         diff += 2
     return total
 
+
 if __name__ == "__main__":
     print(findSumOfDiagonals(1001))

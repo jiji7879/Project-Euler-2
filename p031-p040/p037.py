@@ -1,8 +1,9 @@
 import primeHelperFunctions
 
-#brute force
-def p37solution1():
-    #guess
+
+# brute force
+def p37solution1() -> int:
+    # guess
     primes = primeHelperFunctions.primes_until_n(1000000)
     truncated_primes = []
     k = 1
@@ -27,7 +28,7 @@ def p37solution1():
         is_truncated_prime = True
         left_truncated = ""
         for i in range(len(prime_list)):
-            left_truncated = prime_list[-i-1] + left_truncated
+            left_truncated = prime_list[-i - 1] + left_truncated
             if int(left_truncated) not in primes:
                 is_truncated_prime = False
                 break
@@ -37,6 +38,7 @@ def p37solution1():
     print(truncated_primes)
     print(len(truncated_primes))
     return sum(truncated_primes)
+
 
 if __name__ == "__main__":
     print(p37solution1())

@@ -17,13 +17,15 @@ def champernowne_constant_digit(n: int) -> int:
     startingNumber += (n - currentDigit) // digit_length
     currentDigit += (n - currentDigit) // digit_length * digit_length
 
-    return int(str(startingNumber)[n-currentDigit])
+    return int(str(startingNumber)[n - currentDigit])
+
 
 def p40solution1() -> int:
     product = 1
     for i in range(7):
         product *= champernowne_constant_digit(10 ** i)
     return product
+
 
 if __name__ == "__main__":
     p40solution1()

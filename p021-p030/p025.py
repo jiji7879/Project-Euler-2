@@ -1,6 +1,7 @@
 import bigNumberHelperFunctions
 
-def p25solution() -> list:
+
+def p25solution() -> int:
     x1 = [1]
     x2 = [1]
     count = 2
@@ -10,6 +11,7 @@ def p25solution() -> list:
         x2 = x3
         count += 1
     return count
+
 
 if __name__ == "__main__":
     print(p25solution())

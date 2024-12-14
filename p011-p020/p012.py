@@ -31,5 +31,6 @@ def p12solution2() -> int:
         i += 1
     return divisors
 
+
 if __name__ == "__main__":
     print(p12solution1())

@@ -15,14 +15,15 @@ def p33solution1() -> int:
     numerator = 1
     denominator = 1
     for a in range(1, 10):
-        for b in range(a+1, 10):
+        for b in range(a + 1, 10):
             for c in range(10):
-                if b*a*10 + b*c == a*c*10 + a*b:
-                    #(a*10+c)/(c*10+b) = a/b
+                if b * a * 10 + b * c == a * c * 10 + a * b:
+                    # (a*10+c)/(c*10+b) = a/b
                     numerator *= a
                     denominator *= b
     gcd1 = primeHelperFunctions.gcd(numerator, denominator)
     return denominator // gcd1
+
 
 if __name__ == "__main__":
     print(p33solution1())

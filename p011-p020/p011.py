@@ -50,5 +50,6 @@ def p11solution2() -> int:
     # by fucking eyes
     return 70600674
 
+
 if __name__ == "__main__":
     print(p11solution1())

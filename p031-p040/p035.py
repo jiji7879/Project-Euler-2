@@ -1,16 +1,17 @@
 import primeHelperFunctions
 
-def circularPrimes(maxNumber: int) -> list:
-    if maxNumber < 1:
+
+def circular_primes(max_number: int) -> list[int]:
+    if max_number < 1:
         return []
-    elif maxNumber <= 2:
+    elif max_number <= 2:
         return [2]
-    elif maxNumber <= 4:
+    elif max_number <= 4:
         return [2, 3]
-    elif maxNumber <= 5:
+    elif max_number <= 5:
         return [2, 3, 5]
     list_of_circular_primes = [2, 5]
-    primes = primeHelperFunctions.primes_until_n(maxNumber)
+    primes = primeHelperFunctions.primes_until_n(max_number)
     for test_number in primes:
         test_number_list = [i for i in str(test_number)]
         if '2' in test_number_list or '4' in test_number_list or '6' in test_number_list or '8' in test_number_list or '0' in test_number_list or '5' in test_number_list:
@@ -30,8 +31,10 @@ def circularPrimes(maxNumber: int) -> list:
             list_of_circular_primes.append(test_number)
     return list_of_circular_primes
 
+
 def p35solution1(max_num: int) -> int:
-    return len(circularPrimes(max_num))
+    return len(circular_primes(max_num))
+
 
 if __name__ == "__main__":
     print(p35solution1(1000000))

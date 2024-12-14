@@ -14,5 +14,6 @@ def p9solution1() -> int:
     else:
         return a * b * c
 
+
 if __name__ == "__main__":
     print(p9solution1())

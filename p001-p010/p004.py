@@ -6,5 +6,6 @@ def p4solution1() -> int:
                 listOfPalindromes.append(i * j)
     return max(listOfPalindromes)
 
+
 if __name__ == "__main__":
     print(p4solution1())

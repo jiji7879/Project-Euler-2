@@ -1,6 +1,6 @@
-#done in p7
-#uses sieve of eratosthenes
-def first_n_primes(number_of_prime_targets: int) -> list:
+# done in p7
+# uses sieve of eratosthenes
+def first_n_primes(number_of_prime_targets: int) -> list[int]:
     primeList = []
     # target number is n*ln(n) by prime number theorem, which is an overestimate
     # we can estimate log_10(n) by counting the number of digits, then add 1 to overestimate
@@ -24,9 +24,9 @@ def first_n_primes(number_of_prime_targets: int) -> list:
     return primeList
 
 
-#done in p10
-#uses sieve of eratosthenes
-def primes_until_n(limit: int) -> list:
+# done in p10
+# uses sieve of eratosthenes
+def primes_until_n(limit: int) -> list[int]:
     if limit == 2:
         return [2]
     elif limit == 3:
@@ -46,6 +46,7 @@ def primes_until_n(limit: int) -> list:
         if not listOfNumbers[i]:
             primeList.append(i)
     return primeList
+
 
 # def primes_until_n2(limit: int) -> list:
 #     primeList = []
@@ -68,9 +69,9 @@ def primes_until_n(limit: int) -> list:
 #                     listOfNumbers[j] = True
 #     return primeList
 
-#done in p12
-#returns a dictionary that maps unique primes to their multiplicities
-def prime_factors(n: int, list_of_potential_primes: list = None) -> dict:
+# done in p12
+# returns a dictionary that maps unique primes to their multiplicities
+def prime_factors(n: int, list_of_potential_primes: list[int] = None) -> dict[int, int]:
     if list_of_potential_primes is None:
         list_of_potential_primes = primes_until_n(n)
     dictOfPrimeFactors = {}
@@ -82,39 +83,44 @@ def prime_factors(n: int, list_of_potential_primes: list = None) -> dict:
             n = n // i
             j += 1
         if j > 0:
-            dictOfPrimeFactors[i]=j
+            dictOfPrimeFactors[i] = j
     return dictOfPrimeFactors
 
 
-#done in p12
-def number_of_divisors(n: int, list_of_potential_primes: list = None) -> int:
+# done in p12
+def number_of_divisors(n: int, list_of_potential_primes: list[int] = None) -> int:
     prime_factor_list = prime_factors(n, list_of_potential_primes)
     return number_of_divisors_from_dict(prime_factor_list)
 
-def number_of_divisors_from_dict(dict_of_prime_factors: dict) -> int:
+
+def number_of_divisors_from_dict(dict_of_prime_factors: dict[int, int]) -> int:
     divisors = 1
     for prime in dict_of_prime_factors:
         divisors *= (dict_of_prime_factors[prime] + 1)
     return divisors
 
-#done in p12
+
+# done in p12
 # By Fundamental Theorem of Arithmetic, these will multiply to unique integers
-def multiply_prime_factors(dict_of_prime_factors1: dict, dict_of_prime_factors2: dict) -> dict:
+def multiply_prime_factors(dict_of_prime_factors1: dict[int, int], dict_of_prime_factors2: dict[int, int]) -> dict[
+    int, int]:
     for prime in dict_of_prime_factors1:
         if prime in dict_of_prime_factors2:
-            dict_of_prime_factors2[prime]= dict_of_prime_factors2[prime] + dict_of_prime_factors1[prime]
+            dict_of_prime_factors2[prime] = dict_of_prime_factors2[prime] + dict_of_prime_factors1[prime]
         else:
-            dict_of_prime_factors2[prime]=dict_of_prime_factors1[prime]
+            dict_of_prime_factors2[prime] = dict_of_prime_factors1[prime]
     return dict_of_prime_factors2
 
-#done in p21
-def divisor_list(n: int, list_of_potential_primes: list = None) -> list:
+
+# done in p21
+def divisor_list(n: int, list_of_potential_primes: list[int] = None) -> list[int]:
     if n == 1:
         return [1]
     prime_factor_dict = prime_factors(n, list_of_potential_primes)
     return divisors_from_dict(prime_factor_dict)
 
-def divisors_from_dict(dict_of_prime_factors: dict) -> list:
+
+def divisors_from_dict(dict_of_prime_factors: dict[int, int]) -> list[int]:
     divisors: list = [1]
     for prime in dict_of_prime_factors:
         new_divisors = []
@@ -125,6 +131,7 @@ def divisors_from_dict(dict_of_prime_factors: dict) -> list:
     divisors.sort()
     return divisors
 
+
 # totient(m) * totient(n) = totient(m * n) if m and n are relatively prime
 # Chinese Remainder Theorem
 # Each prime power is relatively prime to each other so long as the primes are distinct
@@ -133,7 +140,7 @@ def divisors_from_dict(dict_of_prime_factors: dict) -> list:
 # Note that exactly p^k/p = p^(k-1) numbers will divide p
 # So totient(p^k) = p^k - p^k/p = (p-1)/p p^k = (p-1) p^(k-1) = (1-1/p) p^k
 # Multiplying all the primes will give totient(n) = n * (1-1/p_1) * (1-1/p_2)...
-def totient(n: int, list_of_potential_primes: list = None) -> int:
+def totient(n: int, list_of_potential_primes: list[int] = None) -> int:
     if n == 1:
         return 1
     totient_num = n
@@ -142,7 +149,8 @@ def totient(n: int, list_of_potential_primes: list = None) -> int:
         totient_num = (prime - 1) * totient_num // prime
     return totient_num
 
-def gcd(num1: int, num2: int, list_of_potential_primes: list = None) -> int:
+
+def gcd(num1: int, num2: int, list_of_potential_primes: list[int] = None) -> int:
     num1_prime_factor_dict = prime_factors(num1, list_of_potential_primes)
     num2_prime_factor_dict = prime_factors(num2, list_of_potential_primes)
     gcd_num = 1
