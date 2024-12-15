@@ -18,6 +18,20 @@ def read_file_as_array_of_numbers(filename: str) -> list[list[int]]:
     return arrayOfNumbers
 
 
+# done in p22
+def read_file_into_sorted_list_of_names(filename: str) -> list[str]:
+    # open the file
+    f = open(filename, "r")
+    line = f.readline()
+    f.close()
+    arrayOfNames = line.split(",")
+    for index in range(len(arrayOfNames)):
+        arrayOfNames[index] = arrayOfNames[index].strip('"')
+    # feeling lazy to sort it
+    arrayOfNames.sort()
+    return arrayOfNames
+
+
 # done in p16
 def digit_sum(num: int) -> int:
     num_string = str(num)
@@ -59,8 +73,13 @@ def find_nth_lexicographic_permutation(sorted_list: list, n: int) -> list:
     return [multiple] + find_nth_lexicographic_permutation(sorted_list, remainder)
 
 
-def is_pandigital(list_to_check: list[int], partial: bool) -> bool:
-    pandigital_digit_set = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+def is_pandigital(list_to_check: list[int], partial: bool, max_int: int = 9) -> bool:
+    if max_int < 1 or max_int > 10:
+        return False
+    if max_int == 10:
+        pandigital_digit_set = {i for i in range(max_int + 1)}
+    else:
+        pandigital_digit_set = {i for i in range(1, max_int + 1)}
     list_digit_set = set()
     for item in list_to_check:
         for char in str(item):
@@ -71,3 +90,15 @@ def is_pandigital(list_to_check: list[int], partial: bool) -> bool:
         return True if list_digit_set.issubset(pandigital_digit_set) else False
     else:
         return True if list_digit_set == pandigital_digit_set else False
+
+
+def text_to_number(char: str) -> int:
+    # ord(A) = 65, ord(Z) = 90
+    if 65 <= ord(char) <= 90:
+        return ord(char) - 64
+
+    # ord(a) = 97, ord(z) = 122
+    if 97 <= ord(char) <= 122:
+        return ord(char) - 96
+
+    return 0

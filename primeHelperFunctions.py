@@ -37,12 +37,12 @@ def primes_until_n(limit: int) -> list[int]:
         return [2, 3, 5, 7]
     primeList = []
     listOfNumbers = [False] * (limit + 1)
-    for i in range(2, int((limit + 1) ** 0.5)):
+    for i in range(2, int((limit + 1) ** 0.50) + 1):
         if not listOfNumbers[i]:
             primeList.append(i)
             for j in range(i, limit + 1, i):
                 listOfNumbers[j] = True
-    for i in range(int((limit + 1) ** 0.5), limit + 1):
+    for i in range(int((limit + 1) ** 0.50) + 1, limit + 1):
         if not listOfNumbers[i]:
             primeList.append(i)
     return primeList
